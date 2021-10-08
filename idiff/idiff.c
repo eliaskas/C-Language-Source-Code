@@ -1,15 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <conio2.h>
 
-#define HUGE	10000	// Huge number of lines
+
+#define HUGE		10000	// Huge number of lines
 #define BUFSIZE	2048	// Buffer size
+
+
+idiff(FILE *, FILE *, FILE *, FILE *);
+FILE *efopen(char *, char *);
+int main(int, char **);
 
 
 char *progname;
 
-int main(int argc, char *argv[]) {
+
+int main(int argc, char **argv) {
 	
 	FILE *fin, *fout, *f1, *f2, *efopen();
 	
@@ -36,11 +42,11 @@ int main(int argc, char *argv[]) {
 	idiff(f1, f2, fin, fout);
 	unlink(diffout);
 	
-	printf("output went to %s to idiff.out\n", progname);
+	printf("Output went to %s to idiff.out\n", progname);
 	
 	system("PAUSE");	
   
-  	return(-1);
+  	return(EXIT_SUCCESS);
 }
 
 
@@ -56,6 +62,7 @@ FILE *efopen(char *file, char *mode) {		// fopen file, die if can't
 		progname, file, mode);
 	exit(1);
 }
+
 
 idiff(FILE *f1, FILE *f2, FILE *fin, FILE *fout) {
      
